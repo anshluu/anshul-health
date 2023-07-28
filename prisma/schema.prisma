@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["jsonProtocol"]
+}
+datasource db {
+  provider = "postgresql"
+  url = "postgres://default:VEDCtvW7op1m@ep-proud-bush-56436929-pooler.us-east-1.postgres.vercel-storage.com:5432/verceldb?pgbouncer=true&connect_timeout=15" // uses connection pooling
+  directUrl = "postgres://default:VEDCtvW7op1m@ep-proud-bush-56436929.us-east-1.postgres.vercel-storage.com:5432/verceldb" // uses a direct connection
+  shadowDatabaseUrl = "postgres://default:VEDCtvW7op1m@ep-proud-bush-56436929.us-east-1.postgres.vercel-storage.com:5432/verceldb" // used for migrations
+}
+model User {
+  id        Int     @id @default(autoincrement())
+  email     String  @unique
+  password  String
+}
