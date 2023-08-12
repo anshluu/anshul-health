@@ -44,6 +44,15 @@ export default function Form({ type }: { type: "login" | "register" }) {
             body: JSON.stringify({
               email: e.currentTarget.email.value,
               password: e.currentTarget.password.value,
+              dob: '0',
+              address:'0',
+              blood:'0',
+              family:'0',
+              insurance:'0',
+              weight:[],
+              wdate:[],
+              height:'0',
+              signed: false
             }),
           }).then(async (res) => {
             setLoading(false);
