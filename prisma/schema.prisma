@@ -28,3 +28,11 @@ model Doctors {
   email     String
   Patient     String
 }
+
+model Appointments {
+  id        Int     @id @default(autoincrement())
+  doctor    String
+  date      String
+  patient   String
+  type      String
+}
