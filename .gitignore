@@ -2,5 +2,5 @@
 /.next/
 /out/
 .vercel
-.env.local
+.env
 /prisma
