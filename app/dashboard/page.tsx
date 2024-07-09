@@ -12,6 +12,7 @@ export default async function Home() {
       <div className="w-screen h-screen flex flex-col space-y-5 justify-center items-center">
         <SignOut />
         <p className="text-stone-400 hover:text-stone-200 transition-all">Authorized as a patient. Go to your first visit to get data.</p>
+        <a className="text-yellow-400 hover:text-yellow-200 transition-all" href="dashboard/user/appointment">Schedule Appointment</a>
         
   
       
@@ -20,16 +21,16 @@ export default async function Home() {
     )
   }
   //@ts-ignore
+  const currentDate = new Date();
   const allUsers = await prisma.doctors.findMany({
     where: {email:session.user.email}
   })
   const appointments = prisma.appointments.findMany({
     where:{
-      doctor:session.user.email
+      doctor:session.user.email,
+      date:`${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear()}`
     }
   })
-    
-  const currentDate = new Date();
 
 
   return (
@@ -45,11 +46,15 @@ export default async function Home() {
       <br></br>
       
       {(await appointments).map((data) => (
-        <p className="text-yellow-400 hover:text-yellow-200 transition-all">
-
-          { ? (return 'ok')}
-          
-          </p>
+        <>
+        <a
+        className="text-yellow-400 hover:text-yellow-200 transition-all"
+        href={`/dashboard/patients/${data.patient}`}
+      >
+        {data.patient}
+      </a>
+      <br></br>
+      </>
       ))}
       </p>
 
